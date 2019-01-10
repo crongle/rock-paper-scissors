@@ -8,23 +8,72 @@
 <body>
 <script>
 
-  function computerPlay() {
-    let cpuChoice
-    let choice = Math.floor(Math.random()*3)
+  function cpuSelection() {
+    let cpuChoice;
+    let choice = Math.floor(Math.random()*3) + 1;
 
-    switch choice {
-      case 0:
-        cpuChoice = "Rock"
-      break;
+    console.log(choice);
 
-      case 1 :
-        cpuChoice = "Paper"
+    switch(choice) {
+      case 1:
+        cpuChoice = -1; //Rock
       break;
 
       case 2:
-        cpuChoice = "Scissors"
+        cpuChoice = -3; //Paper
+      break;
+
+      case 3:
+        cpuChoice = -5; //Scissors
       break;
     }
+    return(cpuChoice);
+  }
 
-</script>
+    function playRound(cpuChoice) {
+      let winState = "NONE";
+      let playerSelection = prompt("Rock, Paper, Scissors?")
+
+      switch(playerSelection) {
+        case "Rock":
+          playerSelection = 0;
+        break;
+
+        case "Paper":
+          playerSelection = 2;
+        break;
+
+        case "Scissors":
+          playerSelection = 4;
+        break;
+      }
+
+      let winCount = playerSelection + cpuChoice;
+
+      console.log(winCount);
+
+      switch(winCount) {
+        case -1:
+          winState = "DRAW";
+        break;
+
+        case 1:
+        case -5:
+          winState = "WIN";
+        break;
+
+        case -3:
+        case 3:
+          winState = "LOSS";
+        }
+        return(winState);
+      }
+
+      function outcomeMessage(winState) {
+        console.log(winState);
+      }
+
+    outcomeMessage(playRound(cpuSelection()));
+
+</script
 </body>
